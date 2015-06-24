@@ -188,7 +188,6 @@ class ComputerPlayer
   end
 
   def tell(x,y,value)
-    p @known
     if !@known[value].nil?
       @match_next = [value,@known[value]]
     end
