@@ -1,0 +1,17 @@
+Navigation
+  Go to file:           Cmd + t
+  Close tab:            Cmd + w
+  Next tab:             Opt + Cmd + LArrow
+  Previous tab:         Opt + Cmd + RArrow
+  Go to line:           Ctl + g
+  Show project drawer:  Cmd + \    Note: A project is a folder which contains multiple related files. These shortcuts will be very useful when we get to Rails.
+  New tab:              Cmd + n
+
+Finding
+  Find anywhere in project: Shift + Cmd + f
+
+Editing
+  Comment out selection: Cmd + /
+  Indent selection:      Cmd + ]
+  Unindent selection:    Cmd + [
+  Delete current line:   Shift + Ctl + k
