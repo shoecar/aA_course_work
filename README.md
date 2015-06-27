@@ -5,3 +5,7 @@ git status
 git add -A
 git commit -m "put comment here"
 git push
+
+http://www.ndpsoftware.com/git-cheatsheet.html
+
+https://github.com/appacademy/ruby-curriculum/blob/master/w1d6-w1d7/atom_cheatsheet.md
