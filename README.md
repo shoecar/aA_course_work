@@ -1,10 +1,10 @@
 # aA_course_work
 Course work done at App Academy from June 22nd to September 11th
 
-git status  
-git add -A
-git commit -m "put comment here"
-git push
+gst = git status  
+gaa = git add -A
+gcm = git commit -m "put comment here"
+gp  = git push
 
 http://www.ndpsoftware.com/git-cheatsheet.html
 
