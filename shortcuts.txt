@@ -22,18 +22,18 @@ cmd + } :           move one tab right
 cmd + shift + p :   Find and run available commands
 ctrl + 0 :          Switch between tree view and text editor
 
-In tree view:
-a : Add a file to the current folder
-A : Add a folder
-m : Rename/move a file
+In tree view
+a   Add a file to the current folder
+A   Add a folder
+m   Rename/move a file
 In a .html.erb file:
 - then tab becomes <% %>
 = then tab becomes <%= %>
 
 bash
-ctr + a : Beginning of Line
-ctr + e : End of Line
-ctr + k : Kill (delete) to end of line
+ctr + a   Beginning of Line
+ctr + e   End of Line
+ctr + k   Kill (delete) to end of line
 cp        'cp file1 file2' copies file1 to file2, overwriting file2 if it already exists
 mkdir     mkdir -p project/programs -p option automatically creates any necessary parent directories.
 rm        removes file
