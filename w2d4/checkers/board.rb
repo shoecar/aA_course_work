@@ -61,8 +61,16 @@ class Board
     self[position].color != :empty && self[position].color != color
   end
 
-  def no_object?(position, color)
+  def no_object?(position)
     row, col = position
     row.between?(0, 9) && col.between?(0, 9) && self[position].empty?
+  end
+
+  def must_jump?(color)
+    get_color_pieces(color).any? { |piece| piece.can_jump? }
+  end
+
+  def get_color_pieces(color)
+    @grid.flatten.select { |piece| piece.color == color }
   end
 end

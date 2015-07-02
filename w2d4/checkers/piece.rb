@@ -56,6 +56,15 @@ class Piece
     end
   end
 
+  # possibly not correct logic
+  def can_jump?
+    move_diffs(:jump).any? do |direction|
+      to_position = combine_positions(direction, position)
+      board.no_object?(to_position) && board.is_enemy?(between_positions(to_position, position), color)
+
+    end
+  end
+
   def update_piece(to_position)
     board[to_position] = self
     board[position] = EmptySquare.new
@@ -65,7 +74,7 @@ class Piece
   def position_viable?(to_position, symbol)
     move_diffs(symbol).any? do |move|
       combine_positions(position, move) == to_position &&
-          board.no_object?(to_position, color)
+          board.no_object?(to_position)
     end
   end
 

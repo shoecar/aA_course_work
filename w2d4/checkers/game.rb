@@ -10,14 +10,6 @@ class Game
     @players = [:white, :black]
   end
 
-  # def play
-  #   loop do
-  #     parse_input
-  #     second_position?
-  #     board.display
-  #   end
-  # end
-
   def play
     until game_over?
       make_move
@@ -29,18 +21,34 @@ class Game
     turn_over = false
     until turn_over
       board.display
-      p @players
-      parse_input
-      if @positions.count > 1
-        start, finish = @positions
-        piece = board[start]
-        if (start[0] - finish[0]).abs == 1
-          turn_over = true if piece.perform_move(finish)
-        else
-          turn_over = true if piece.perform_jump(finish)
+      puts "#{players.first}'s turn'"
+      if board.must_jump?(@players.first)
+        puts "You must jump the opponents piece"
+        if @positions.count > 1
+          start, finish = @positions
+          piece = board[start]
+          piece.perform_jump(finish)
+          board.display
+          puts "#{players.first}'s turn'"
+          @positions = []
+          turn_over = true unless board.must_jump?(@players.first)
         end
-        @positions = []
+      else
+        if @positions.count > 1
+          start, finish = @positions
+          piece = board[start]
+          if (start[0] - finish[0]).abs == 1
+            turn_over = true if piece.perform_move(finish)
+          else
+            turn_over = true if piece.perform_jump(finish)
+          end
+          @positions = []
+            board.display
+            puts "#{players.first}'s turn'"
+        end
       end
+      parse_input
+      board.display
     end
   end
 
