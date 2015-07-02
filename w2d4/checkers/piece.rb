@@ -33,17 +33,23 @@ class Piece
 
   def perform_move(to_position)
     if position_viable?(to_position, :move)
-      board[position] = EmptySquare.new
-      board[to_position] = self
-      position = to_position
+      update_piece(to_position)
     end
   end
 
   def perform_jump(to_position)
+    jumped = between_positions(to_position, position)
     if position_viable?(to_position, :jump) &&
-        board.is_enemy?(between_positions(to_position, position))
-
+        board.is_enemy?(jumped, color)
+        update_piece(to_position)
+        board[jumped] = EmptySquare.new
     end
+  end
+
+  def update_piece(to_position)
+    board[to_position] = self
+    board[position] = EmptySquare.new
+    @position = to_position
   end
 
   def position_viable?(to_position, symbol)

@@ -15,6 +15,10 @@ class Board
     {}
   end
 
+  def move_cursor(change)
+    @cursor = [@cursor[0] + change[0], @cursor[1] + change[1]]
+  end
+
   def [](position)
     row, col = position
     @grid[row][col]
@@ -38,6 +42,7 @@ class Board
   end
 
   def display
+    system('clear')
     grid.each_with_index do |row, row_idx|
       row.each_with_index do |piece, col_idx|
         if cursor == [row_idx, col_idx]
@@ -58,10 +63,7 @@ class Board
 
   def no_object?(position, color)
     row, col = position
-    row.between?(0, 9) && col.between?(0, 9) && self[position].color != color
+    row.between?(0, 9) && col.between?(0, 9) && self[position].empty?
   end
 
 end
-
-b = Board.new
-b.display
