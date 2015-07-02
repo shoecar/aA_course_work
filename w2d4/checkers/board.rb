@@ -33,7 +33,7 @@ class Board
     (0..9).each_with_index do |row|
       (0..9).each_with_index do |col|
         if row < 3 && (row - col) % 2 > 0
-          self[[row, col]] = Piece.new(:red, [row, col], self)
+          self[[row, col]] = Piece.new(:black, [row, col], self)
         elsif row > 6 && (row - col) % 2 > 0
           self[[row, col]] = Piece.new(:white, [row, col], self)
         end
@@ -48,7 +48,7 @@ class Board
         if cursor == [row_idx, col_idx]
           print " #{piece} ".colorize(:background => :yellow)
         elsif (row_idx - col_idx) % 2 > 0
-          print " #{piece} ".colorize(:background => :black)
+          print " #{piece} ".colorize(:background => :cyan)
         else
           print " #{piece} ".colorize(:background => :white)
         end
@@ -58,7 +58,7 @@ class Board
   end
 
   def is_enemy?(position, color)
-    self[position].color != :e || self[position].color != color
+    self[position].color != :empty && self[position].color != color
   end
 
   def no_object?(position, color)

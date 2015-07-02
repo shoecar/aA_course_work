@@ -2,30 +2,32 @@ require_relative 'board.rb'
 require "io/console"
 
 class Game
-  attr_reader :board, :positions
+  attr_reader :board, :positions, :players
 
   def initialize
     @board = Board.new
     @positions = []
+    @players = [:white, :black]
   end
 
   def play
     loop do
       parse_input
-      if @positions.count > 1
-        start, finish = @positions
-        piece = board[start]
-        if (start[0] - finish[0]).abs == 1
-          piece.perform_move(finish)
-        else
-          piece.perform_jump(finish)
-        end
-        p positions
-        @positions = []
-      end
+      second_position?
       board.display
-      p board.cursor
-      p positions
+    end
+  end
+
+  def second_position?
+    if @positions.count > 1
+      start, finish = @positions
+      piece = board[start]
+      if (start[0] - finish[0]).abs == 1
+        piece.perform_move(finish)
+      else
+        piece.perform_jump(finish)
+      end
+      @positions = []
     end
   end
 
@@ -42,8 +44,10 @@ class Game
     when "d"
       board.move_cursor([0, 1])
     when "\r"
+      position = board.cursor
       if positions.count == 0
-        positions << board.cursor unless board[board.cursor].empty?
+        positions << position unless board[position].empty? ||
+                                      board[position].color != players.first
       else
         positions << board.cursor if board[board.cursor].empty?
       end

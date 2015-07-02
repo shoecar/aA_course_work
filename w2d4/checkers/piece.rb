@@ -1,11 +1,13 @@
+require 'colorize'
+
 class Piece
   WHITE_MOVES = [[-1, 1], [-1, -1]]
-  RED_MOVES =  [[1, -1], [1, 1]]
+  BLACK_MOVES =  [[1, -1], [1, 1]]
   WHITE_JUMPS = [[-2, 2], [-2, -2]]
-  RED_JUMPS =  [[2, -2], [2, 2]]
+  BLACK_JUMPS =  [[2, -2], [2, 2]]
 
-  attr_reader :color, :king, :board
-  attr_accessor :position
+  attr_reader :color, :board
+  attr_accessor :position, :king
 
   def initialize(color, position, board)
     @color = color
@@ -18,15 +20,15 @@ class Piece
   def move_diffs(type)
     if type == :move
       if king?
-        WHITE_MOVES + RED_MOVES
+        WHITE_MOVES + BLACK_MOVES
       else
-        color == :white ? WHITE_MOVES : RED_MOVES
+        color == :white ? WHITE_MOVES : BLACK_MOVES
       end
     else
       if king?
-        WHITE_JUMPS + RED_JUMPS
+        WHITE_JUMPS + BLACK_JUMPS
       else
-        color == :white ? WHITE_JUMPS : RED_JUMPS
+        color == :white ? WHITE_JUMPS : BLACK_JUMPS
       end
     end
   end
@@ -35,6 +37,7 @@ class Piece
     if position_viable?(to_position, :move)
       update_piece(to_position)
     end
+    try_promote
   end
 
   def perform_jump(to_position)
@@ -44,6 +47,7 @@ class Piece
         update_piece(to_position)
         board[jumped] = EmptySquare.new
     end
+    try_promote
   end
 
   def update_piece(to_position)
@@ -68,6 +72,11 @@ class Piece
     [row / 2, col / 2]
   end
 
+  def try_promote
+    @king = true if position[0] == 0 && color == :white
+    @king = true if position[0] == 9 && color == :black
+  end
+
   def king?
     king == true
   end
@@ -78,9 +87,9 @@ class Piece
 
   def to_s
     if color == :white
-      "⚪"
+      king? ? "♚".colorize(:white) : "⚪"
     else
-      "⚫"
+      king? ? "♚".colorize(:black) : "⚫"
     end
   end
 
@@ -90,7 +99,7 @@ class EmptySquare
   attr_reader :color
 
   def initialize
-    @color = :e
+    @color = :empty
   end
 
   def empty?
