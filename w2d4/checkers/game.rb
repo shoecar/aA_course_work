@@ -10,24 +10,37 @@ class Game
     @players = [:white, :black]
   end
 
+  # def play
+  #   loop do
+  #     parse_input
+  #     second_position?
+  #     board.display
+  #   end
+  # end
+
   def play
-    loop do
-      parse_input
-      second_position?
-      board.display
+    until game_over?
+      make_move
+      @players.reverse!
     end
   end
 
-  def second_position?
-    if @positions.count > 1
-      start, finish = @positions
-      piece = board[start]
-      if (start[0] - finish[0]).abs == 1
-        piece.perform_move(finish)
-      else
-        piece.perform_jump(finish)
+  def make_move
+    turn_over = false
+    until turn_over
+      board.display
+      p @players
+      parse_input
+      if @positions.count > 1
+        start, finish = @positions
+        piece = board[start]
+        if (start[0] - finish[0]).abs == 1
+          turn_over = true if piece.perform_move(finish)
+        else
+          turn_over = true if piece.perform_jump(finish)
+        end
+        @positions = []
       end
-      @positions = []
     end
   end
 
@@ -54,6 +67,10 @@ class Game
     when "p"
       exit
     end
+  end
+
+  def game_over?
+    false
   end
 end
 

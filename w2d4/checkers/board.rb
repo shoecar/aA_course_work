@@ -32,9 +32,9 @@ class Board
   def populate
     (0..9).each_with_index do |row|
       (0..9).each_with_index do |col|
-        if row < 3 && (row - col) % 2 > 0
+        if row < 3 && (row - col).odd?
           self[[row, col]] = Piece.new(:black, [row, col], self)
-        elsif row > 6 && (row - col) % 2 > 0
+        elsif row > 6 && (row - col).odd?
           self[[row, col]] = Piece.new(:white, [row, col], self)
         end
       end
@@ -65,5 +65,4 @@ class Board
     row, col = position
     row.between?(0, 9) && col.between?(0, 9) && self[position].empty?
   end
-
 end

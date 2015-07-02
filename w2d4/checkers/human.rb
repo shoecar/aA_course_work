@@ -7,19 +7,26 @@ class Human
     @positions = []
   end
 
+  def play
+    until game_over?
+      make_move
+      positions.reverse
+    end
+  end
+
   def make_move
-    loop do
+    until turn_over
+      turn_over = false
       parse_input
       if positions.count > 1
         start, finish = positions
         piece = board[start]
         if (start[0] - finish[0]).abs == 1
-          piece.perform_move(finish)
+          turn_over = true piece.perform_move(finish)
         else
-          piece.perform_jump(finish)
+          turn_over = piece.perform_jump(finish)
         end
         positions = []
-        break
       end
       board.display
     end

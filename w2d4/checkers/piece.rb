@@ -36,18 +36,24 @@ class Piece
   def perform_move(to_position)
     if position_viable?(to_position, :move)
       update_piece(to_position)
+      try_promote
+      true
+    else
+      false
     end
-    try_promote
   end
 
   def perform_jump(to_position)
     jumped = between_positions(to_position, position)
     if position_viable?(to_position, :jump) &&
-        board.is_enemy?(jumped, color)
-        update_piece(to_position)
-        board[jumped] = EmptySquare.new
+       board.is_enemy?(jumped, color)
+      update_piece(to_position)
+      board[jumped] = EmptySquare.new
+      try_promote
+      true
+    else
+      false
     end
-    try_promote
   end
 
   def update_piece(to_position)
@@ -73,12 +79,14 @@ class Piece
   end
 
   def try_promote
-    @king = true if position[0] == 0 && color == :white
-    @king = true if position[0] == 9 && color == :black
+    if (position[0] == 0 && color == :white) ||
+      (position[0] == 9 && color == :black)
+      @king = true
+    end
   end
 
   def king?
-    king == true
+    king
   end
 
   def empty?
@@ -92,7 +100,6 @@ class Piece
       king? ? "♚".colorize(:black) : "⚫"
     end
   end
-
 end
 
 class EmptySquare
@@ -109,5 +116,4 @@ class EmptySquare
   def to_s
     " "
   end
-
 end
