@@ -12,10 +12,6 @@ class Board
     @selector = []
   end
 
-  def inspect
-    {}
-  end
-
   def move_cursor(change)
     new_cursor = [@cursor[0] + change[0], @cursor[1] + change[1]]
     row, col = new_cursor
