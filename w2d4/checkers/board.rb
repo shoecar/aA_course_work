@@ -2,13 +2,14 @@ require_relative 'piece.rb'
 require 'colorize'
 
 class Board
-  attr_accessor :cursor
+  attr_accessor :cursor, :selector
   attr_reader :grid
 
   def initialize
     @grid = Array.new(10) { Array.new(10) { EmptySquare.new } }
     populate
     @cursor = [5,5]
+    @selector = []
   end
 
   def inspect
@@ -16,7 +17,9 @@ class Board
   end
 
   def move_cursor(change)
-    @cursor = [@cursor[0] + change[0], @cursor[1] + change[1]]
+    new_cursor = [@cursor[0] + change[0], @cursor[1] + change[1]]
+    row, col = new_cursor
+    @cursor = new_cursor if row.between?(0, 9) && col.between?(0, 9)
   end
 
   def [](position)
@@ -47,6 +50,8 @@ class Board
       row.each_with_index do |piece, col_idx|
         if cursor == [row_idx, col_idx]
           print " #{piece} ".colorize(:background => :yellow)
+        elsif selector == [row_idx, col_idx]
+          print " #{piece} ".colorize(:background => :light_red)
         elsif (row_idx - col_idx) % 2 > 0
           print " #{piece} ".colorize(:background => :cyan)
         else

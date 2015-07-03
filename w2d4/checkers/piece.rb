@@ -56,12 +56,11 @@ class Piece
     end
   end
 
-  # possibly not correct logic
   def can_jump?
     move_diffs(:jump).any? do |direction|
       to_position = combine_positions(direction, position)
-      board.no_object?(to_position) && board.is_enemy?(between_positions(to_position, position), color)
-
+      board.no_object?(to_position) &&
+        board.is_enemy?(between_positions(to_position, position), color)
     end
   end
 

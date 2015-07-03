@@ -20,11 +20,12 @@ class Game
   def make_move
     turn_over = false
     until turn_over
-      puts "#{players.first}'s turn'"
-      parse_input
+      board.selector = positions.first
       board.display
+      puts "#{players.first}'s turn'"
+      puts "You must jump the opponents piece" if board.must_jump?(@players.first)
+      parse_input
       if board.must_jump?(@players.first)
-        puts "You must jump the opponents piece"
         if @positions.count > 1
           start, finish = @positions
           piece = board[start]
@@ -64,7 +65,9 @@ class Game
     when "\r"
       position = board.cursor
       if positions.count == 0 && board[position].color == players.first
-        positions << position unless board[position].empty?
+        unless board[position].empty?
+          positions << position
+        end
       elsif positions.count == 1
         positions << board.cursor if board[board.cursor].empty?
       end
