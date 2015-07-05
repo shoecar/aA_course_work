@@ -8,7 +8,7 @@
 + gc  = 'git commit -m'
 + gl  = "git log --pretty=format"...
 + gp  = 'git push'
-+ gss = 'git status -sb'
++ gs = 'git status -sb'
 
 ---
 
