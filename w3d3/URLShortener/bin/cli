@@ -1,0 +1,55 @@
+class UI
+  attr_reader :quit
+
+  def intitalize
+    @quit = false
+    @u = nil
+  end
+
+  def run
+
+    create_user
+
+    until quit
+      option
+    end
+  end
+
+  def create_user
+    print "Enter your email: "
+    input = gets.chomp
+
+    if User.where("email = '#{input}'").empty?
+      @u = User.create!(email: input)
+
+    else
+      @u = User.where("email = ?", input)
+    end
+  end
+
+  def option
+    puts "What do you want to do?"
+    print "1 = create short url\n2 = visit short url\n3 = quit\n:"
+    input = gets.chomp.to_i
+    if input == 1
+      puts "Type in your long URL: "
+      long_url = gets.chomp
+      short_url_obj =ShortenedUrl.create_for_user_and_long_url!(@u, long_url)
+      puts "Short URL is #{short_url_obj.short_url}"
+      short_url_obj.short_url
+    elsif input == 2
+      puts "Enter short url to visit: "
+      long_url = ShortenedUrl.short_to_long(gets.chomp)
+
+      Launchy.open(long_url)
+    else
+      @quit = true #if input == 3
+
+    end
+
+
+  end
+end
+
+cli = UI.new
+cli.run
