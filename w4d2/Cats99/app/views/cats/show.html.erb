@@ -1,0 +1,19 @@
+<table>
+  <th><%= @cat.name%></th>
+  <% [:age, :color, :sex].each do |key| %>
+  <tr>
+    <td><%= key %></td>
+    <td><%= @cat.send(key)%></td>
+  </tr>
+  <% end %>
+</table>
+
+<p>
+  <%= @cat.description %>
+</p>
+
+<ul>
+  <% @rentals.sort_by { |rental| rental.start_date }.each do |rental| %>
+    <li><%= rental.start_date %> / <%= rental.end_date %><%=link_to "Approve", cat_rental_request_url(rental), method: :approve!%></li>
+  <% end %>
+</ul>
