@@ -13,4 +13,11 @@
 <h3>Lyrics:</h3>
 <p><%= @track.lyrics %></p>
 
+<% @track.notes.each do |note| %>
+  <p><%= note.user.email %> said: <%= note.text %></p>
+<% end %>
+
+<p>Add a note:</p>
+<%= render "notes/form" %>
+
 <%= button_to "Delete", track_url(@track), method: :delete %>

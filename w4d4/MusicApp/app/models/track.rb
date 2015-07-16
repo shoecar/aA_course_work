@@ -13,4 +13,12 @@ class Track < ActiveRecord::Base
     through: :album,
     source: :band
   )
+
+  has_many(
+    :notes,
+    class_name: :Note,
+    primary_key: :id,
+    foreign_key: :track_id,
+    dependent: :destroy
+  )
 end

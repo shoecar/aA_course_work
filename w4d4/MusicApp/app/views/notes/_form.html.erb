@@ -1,0 +1,26 @@
+<form action="/notes"  method="POST">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <label for="note_track">Track Name</label>
+  <select name="note[track_id]" id="note_track">
+    <option></option>
+    <% Track.all.each do |track| %>
+      <option
+        <%= track.id == params[:track_id].to_i ? "selected" : "" %>
+        value="<%= track.id %>">
+        <%= track.name %>
+      </option>
+    <% end %>
+  </select>
+  <br>
+
+  <label>
+    <textarea name="note[text]"></textarea>
+  </label>
+  <br>
+
+  <input type="submit" value="Leave Note">
+</form>
