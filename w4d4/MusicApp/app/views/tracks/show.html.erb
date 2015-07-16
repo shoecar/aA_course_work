@@ -1,0 +1,16 @@
+<h1><%= @track.name %></h1>
+<h2>
+  By: <%= link_to "#{@track.band.name}", band_url(@track.band) %>
+  On: <%= link_to "#{@track.album.name}", album_url(@track.album) %>
+</h2>
+
+<% if @track.checked == "Regular" %>
+  <p>This is a Regular track</p>
+<% else %>
+  <p>This is a Bonus track</p>
+<% end %>
+
+<h3>Lyrics:</h3>
+<p><%= @track.lyrics %></p>
+
+<%= button_to "Delete", track_url(@track), method: :delete %>

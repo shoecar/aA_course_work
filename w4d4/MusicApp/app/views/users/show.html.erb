@@ -1,0 +1,12 @@
+<% if current_user %>
+  <p><%= current_user.email %></p>
+  <p><%= current_user.session_token %></p>
+  <p><%= session[:session_token] %></p>
+<% end %>
+
+<h1>Users</h1>
+
+<% User.all.each do |user| %>
+  <p><%= user.email %></p>
+  <p><%= user.session_token %></p>
+<% end %>
