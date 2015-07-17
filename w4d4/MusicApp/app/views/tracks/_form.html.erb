@@ -15,7 +15,8 @@
     <option></option>
     <% Album.all.each do |album| %>
       <option
-        <%= album.id == params[:album_id].to_i ? "selected" : "" %>
+        <%= album.id == params[:album_id].to_i ||
+            album.id == @track.album_id ? "selected" : "" %>
         value="<%= album.id %>">
         <%= album.name %>
       </option>
@@ -24,19 +25,23 @@
   <br>
 
   <label for="track_name">Track Name</label>
-  <input type="text" name="track[name]" id="track_name">
+  <input type="text" name="track[name]" id="track_name"
+      value="<%= @track.name %>">
   <br>
 
-  <input type="radio" name="track[checked]" value="regular" id="track_reg" checked>
+  <input type="radio" name="track[checked]" value="Regular" id="track_reg"
+      <%= "checked" if @track.checked == "Regular"%>>
   <label for="track_reg">Regular</label>
-  <input type="radio" name="track[checked]" value="Bonus" id="track_bon">
+  <input type="radio" name="track[checked]" value="Bonus" id="track_bon"
+      <%= "checked" if @track.checked == "Bonus"%>>
   <label for="track_bon">Bonus</label>
   <br>
 
   <label>
     Lyrics
-    <textarea name="track[lyrics]"></textarea>
+    <textarea name="track[lyrics]"><%= @track.lyrics %></textarea>
   </label>
+  <br>
 
   <input type="submit" value="<%= string %> Track">
 </form>

@@ -2,6 +2,7 @@ class TracksController < ApplicationController
   before_action :active_user?
 
   def new
+    @track = Track.new
     render :new
   end
 
