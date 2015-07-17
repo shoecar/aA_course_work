@@ -1,4 +1,6 @@
 class NotesController < ApplicationController
+  before_action :owns_note?, only: :destroy
+
   def create
     @note = Note.new(note_params)
     @note.user_id = current_user.id
@@ -19,5 +21,9 @@ class NotesController < ApplicationController
   private
   def note_params
     params.require(:note).permit(:text, :track_id)
+  end
+
+  def owns_note?
+    current_user.id == Note.find(params[:id]).user_id
   end
 end

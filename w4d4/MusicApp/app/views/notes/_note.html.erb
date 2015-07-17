@@ -1,0 +1,8 @@
+<p><%= note.user.email %> said:</p>
+<p><%= note.text %></p>
+
+<% if note.user.id == current_user.id %>
+  <%= button_to "Delete Your Note", note_url(note), method: :delete %>
+<% end %>
+
+<hr>

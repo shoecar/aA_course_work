@@ -9,7 +9,7 @@
     <option></option>
     <% Track.all.each do |track| %>
       <option
-        <%= track.id == params[:track_id].to_i ? "selected" : "" %>
+        <%= track.id == params[:id].to_i ? "selected" : "" %>
         value="<%= track.id %>">
         <%= track.name %>
       </option>
