@@ -1,0 +1,18 @@
+<h1><%= @sub.title %></h1>
+
+<p><%= @sub.description %></p>
+<hr>
+
+<% @sub.posts.each do |post| %>
+  <div style="border: 1px solid blue">
+    <h2><%= link_to("#{post.title}", post_url(post)) %></h2>
+    <%= link_to("authored by: #{post.user.name}", user_url(post.user)) %>
+    <br>
+    <%= link_to("#{post.url}", post.url) %>
+  </div>
+<% end %>
+
+<hr>
+<%= link_to("Create Post", new_post_url ) %>
+<br>
+<%= link_to("Home", root_url) %>

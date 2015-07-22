@@ -1,0 +1,12 @@
+<h1>All Subs</h1>
+
+<% @subs.each do |sub| %>
+  <div style="border: 1px solid red">
+    <h3><%= link_to("#{sub.title}", sub_url(sub)) %></h3>
+    <p><%= sub.description %></p>
+    <hr>
+    <div>Moderator: <%= link_to("#{sub.moderator.name}", user_url(sub.moderator)) %></div>
+  </div>
+<% end %>
+
+<%= link_to("Create a New Sub", new_sub_url) %>

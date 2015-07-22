@@ -1,0 +1,17 @@
+<% if @post.url %>
+  <h1> <%= link_to("#{@post.title}", "#{@post.url}") %>
+<% else %>
+  <h1><%= @post.title %></h1>
+<% end %>
+<br>
+
+<h2>
+  authored by: <%= link_to("#{@post.user.name}", user_url(@post.user)) %>
+</h2>
+<p><%= @post.content %></p>
+
+<p><%= link_to("Edit This Post", edit_post_url(@post)) %></p>
+
+<%= render 'comments/comment', comments: @post.comments %>
+
+<%= render "comments/form", commentable_id: @post.id, commentable_type: "Post" %>

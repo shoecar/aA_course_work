@@ -1,0 +1,11 @@
+<% comments.each do |comment| %>
+  <div style="border: 1px solid green; margin-left: 20px">
+    <h3>comment by: <%= User.find(comment.user_id).name %></h3>
+    <p> <%= comment.content %></p>
+    <%= render 'comments/form', commentable_id: comment.id, commentable_type: "Comment" %>
+    <% if comment.comments.count > 0 %>
+    <%= byebug %>
+      <%= render 'comments/comment', comments: comment.comments %>
+    <% end %>
+  </div>
+<% end %>

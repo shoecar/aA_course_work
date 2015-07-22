@@ -1,0 +1,14 @@
+<form action="/comments" method='post'>
+  <%= auth_token %>
+  <input type='hidden'
+          name='comment[commentable_id]'
+          value="<%= commentable_id %>">
+  <input type='hidden'
+          name='comment[commentable_type]'
+          value="<%= commentable_type %>">
+  <label for='comment_field'>Complaints here:</label>
+  <textarea id='comment_field' name='comment[content]'></textarea>
+  <br>
+
+  <input type="submit" value="comment">
+</form>
