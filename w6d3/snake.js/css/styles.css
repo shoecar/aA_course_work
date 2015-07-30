@@ -1,0 +1,16 @@
+.snake {
+  position: absolute;
+  margin: auto;
+}
+
+div {
+  margin: 0;
+  padding: 0;
+}
+
+
+pre {
+  float: left;
+  padding: 10px;
+  background-color: #000;
+}

@@ -1,0 +1,53 @@
+h1 {
+  text-align: center;
+  font-family: Helvetica;
+  font-size: 60px;
+  color: #666;
+}
+
+.hanoi {
+  width: 900px;
+  height: 600px;
+  background-color: #EEE;
+  margin: auto;
+}
+
+.column {
+  display: block;
+  float: left;
+  width: 250px;
+  height: 90%;
+  margin: 25px;
+  background-color: #FFF;
+  position: relative;
+}
+
+.drop {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: auto;
+}
+
+.disk {
+  height: 100px;
+  margin: auto;
+  background-color: #48F;
+}
+
+.s1 {
+  width: 75px;
+  background-color: #00F;
+}
+.s2 {
+  width: 150px;
+  background-color: #0F0;
+}
+.s3 {
+  width: 225px;
+  background-color: #F00;
+}
+
+.selected {
+  background-color: #941;
+}
