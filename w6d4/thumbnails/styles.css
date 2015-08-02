@@ -1,0 +1,13 @@
+img {
+  width: 400px;
+}
+
+.gutter-images img {
+  width: 80px;
+  display: block;
+  float: left;
+}
+
+div.active {
+  width: 100%
+}

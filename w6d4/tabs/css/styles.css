@@ -1,0 +1,43 @@
+* {
+  font-family: helvetica;
+}
+
+.tab-pane {
+  clear: both;
+  display: none;
+  width: 900px;
+  margin: 30px;
+  margin: 0 auto;
+}
+.tabs .active {
+  font-weight: bold;
+}
+
+.tab-pane.active {
+  display: block;
+  opacity: 1;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+}
+
+.tabs {
+  font-size: 30px;
+  margin: 30px;
+  width: 900px;
+  margin: 0 auto;
+}
+
+.tabs li {
+  float: left;
+  margin: 20px;
+  display: block;
+  padding: 10px;
+  background-color: #ccc;
+}
+
+.tab-pane.transitioning {
+  display: block;
+  opacity: 0;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+}

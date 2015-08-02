@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Cool Website</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/tabs.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.17.2/build/cssreset/cssreset-min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+  </head>
+  <body>
+    <ul class="tabs" data-content-tabs="#content-tabs">
+      <li class="active"><a href='javascript:void(0);' for='#affenpinscher'>Affenpinscher</a></li>
+      <li><a href='javascript:void(0);' for='#beauceron'>Beauceron</a></li>
+      <li><a href='javascript:void(0);' for='#giant-schnauzer'>Giant Schnauzer</a></li>
+    </ul>
+
+    <div id="content-tabs">
+      <div class="tab-pane active">
+        <p id="affenpinscher">
+          Affenpinscher is German for Monkey Dog, and the Affenpinscher is every bit as active and playful as his name implies. These are peppy, plucky, busy, fun-loving, mischievous, and sometimes conniving dogs. The Affenpinscher is a small dog with a big attitude! Sometimes they are too intelligent for their own good. Obedience training can be tricky with this breed. The Affenpinscher is loyal, affectionate and devoted toward his master and friends. He is always ready to protect his owner, his home, and his family's possessions.
+        </p>
+      </div>
+      <div class="tab-pane">
+        <p id="beauceron">
+          The Beauceron is self-confident, faithful, intelligent, gentle, fearless, and loyal. He tends to be aloof with strangers. He gets along well with children. He's protective of his family and makes a good guardian. He's and loving and affectionate with the family. He becomes deeply attached to his master. He's highly playful. He isn't a couch potato, but an active dog that likes to burn his energy outside. If bored he can become destructive. His herding instinct remains strong and he may attempt to herd people or objects.
+        </p>
+      </div>
+      <div class="tab-pane">
+        <p id="giant-schnauzer">
+          The Giant Schnauzer is a spirited, energetic, good-natured dog who loves his owners and is protective of them. He is naturally territorial, and intimidating to look at, so he makes a good guard dog. He loves to bark and can be quite good at it! Maybe sometimes too good! (They've been accused of being loud and demanding!) He can often be wary of strangers but can usually tell friend from foe instinctively. These are high energy, active dogs who need hours of exercise each day. They need to be stimulated both physically and mentally.
+        </p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(function () {
+        $('.tabs').tabs();
+      })
+    </script>
+  </body>
+</html>
