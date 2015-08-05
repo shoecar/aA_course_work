@@ -1,0 +1,7 @@
+<li class="toy-list-item" data-toy-id="<%= toy.escape('id') %>" data-pokemon-id="<%= toy.escape('pokemon_id') %>">
+  <% _.each(toy.attributes, function (value, attr) { %>
+      <% if (attr === "name" || attr === "happiness" || attr === "price") {%>
+        <%= attr + ": " + _.escape(value) %><br>
+      <% } %>
+  <% }); %>
+</li>

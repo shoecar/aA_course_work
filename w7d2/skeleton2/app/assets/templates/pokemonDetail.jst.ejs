@@ -1,0 +1,11 @@
+<div class="detail">
+  <img src="<%= pokemon.escape('image_url') %>" />
+  <% _.each(pokemon.attributes, function (value, attr) { %>
+    <% if (attr !== "id" && attr !== "image_url") {%>
+      <p><%= attr + ": " + _.escape(value) %></p><br>
+    <% } %>
+  <% }); %>
+</div>
+
+<p>Toys: </p>
+<ul class="toys"></ul>

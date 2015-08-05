@@ -1,0 +1,12 @@
+<div class="detail">
+  <img src="<%= toy.escape('image_url') %>" /><br>
+  Name: <%= toy.escape('name') %><br>
+  Happiness: <%= toy.escape('happiness') %><br>
+  Price: <%= toy.escape('price') %><br>
+
+  <select>
+    <% pokemon.forEach(function (poke) { %>
+      <option><%= poke.escape('name') %></option>
+    <% }) %>
+  </select>
+</div>
